@@ -1,0 +1,12 @@
+.bg-light-blue {
+ background: #5ECAFB
+}
+
+button, input {
+  outline: none;
+}
+
+.btn-custom {
+  background-color: transparent;
+  border: none;
+}
