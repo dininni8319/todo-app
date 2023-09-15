@@ -3,19 +3,28 @@ import { ITask } from '../App'
 import TodoItem from './TodoItem';
 
 interface Props {
- taskList: ITask[];
- handleDelete: (
+  taskList: ITask[];
+  handleDelete: (
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
     id: string
-  ) => void
+  ) => void;
+  handleCompeteTodo: (
+    event: MouseEvent<HTMLInputElement, globalThis.MouseEvent>
+  , id: string) => void;
 }
 
-const TodoList = ({ taskList, handleDelete }:Props) => {
+const TodoList = ({ 
+  taskList, 
+  handleDelete,
+  handleCompeteTodo,
+}:Props) => {
   return (
     <div className='col-11 col-md-6 mt-5'>
       <TodoItem 
         taskList={taskList}
         handleDelete={handleDelete} 
+        handleCompeteTodo={handleCompeteTodo}
+
       />
     </div>
   )

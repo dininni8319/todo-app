@@ -6,7 +6,8 @@ import Form from './components/Form'
 
 export interface ITask { 
   id: string; 
-  task: string 
+  task: string;
+  completed: boolean;
 }
 
 function filterTasks(tasks: ITask[], id: string) {
@@ -14,14 +15,13 @@ function filterTasks(tasks: ITask[], id: string) {
 }
 
 const App = () => {
-
   const [task, setTask] = useState<string>('');
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
   const handleTask = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
     if (task.length >= 2) {
       event.preventDefault()
-      const newTask = { id: uuidv4(), task: task }; // Set the task property to the current value of task state
+      const newTask = { id: uuidv4(), task: task, completed: false }; // Set the task property to the current value of task state
       const tasks = (taskList: ITask[]) => [newTask, ...taskList]
 
       localStorage.setItem('tasks',JSON.stringify(tasks(taskList)))
@@ -45,28 +45,36 @@ const App = () => {
       event.preventDefault()
       const pars = localStorage.getItem('tasks') || String([])
       const tasks:ITask[] | [] = JSON.parse(pars)
-      
+
       localStorage.setItem('tasks', JSON.stringify(filterTasks(tasks, id)))
       const filteredTask = filterTasks(taskList, id)
       setTaskList(filteredTask)
   }
 
-  // To be implemented
-  const handleEditText = (e, id: string) => {
-    e.preventDefault()
-    const editedTask = taskList.map((item) => {
-      if (item.id === id) {
-        return { ...item, task: task }
+  const handleCompeteTodo = (
+    event: MouseEvent<HTMLInputElement, globalThis.MouseEvent>
+    , id: string
+  ) => {
+    event.preventDefault()
+    const pars = localStorage.getItem('tasks') || String([])
+    const tasks:ITask[] | [] = JSON.parse(pars)
+    const findTaskAndComplete = tasks.map(task => {
+      if (task.id === id ) {
+        task.completed = !task.completed
       }
-      return item
+      return task
     })
-    setTaskList(editedTask)
-  } 
+    if (findTaskAndComplete) {
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+      setTaskList(findTaskAndComplete)
+    }
+  }
+
   
   return (
-    <div className='class-custom'>
+    <div className='class-custom d-flex flex-column justify-content-center'>
       <div className='row'>
-        <div className="col-md-12 d-flex justify-content-center mt-5">
+        <div className="col-md-12 d-flex justify-content-center">
             <Form 
               handleTask={handleTask}
               task={task}
@@ -76,10 +84,11 @@ const App = () => {
       </div>
       <div className="row">
         <div className="d-flex justify-content-center">
-          <div className="col-12 col-md-6 d-flex justify-content-center p-2 bg-light-blue">
+          <div className="col-12 col-md-6 d-flex justify-content-center p-4 bg-light-blue">
               <TodoList 
                 taskList={taskList} 
                 handleDelete={handleDelete}
+                handleCompeteTodo={handleCompeteTodo}
               />
           </div>
         </div>
