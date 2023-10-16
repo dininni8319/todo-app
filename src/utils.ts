@@ -1,13 +1,13 @@
 import { MouseEvent } from "react"
 
 export interface IEvent {
-  event: MouseEvent<HTMLInputElement>
+  event: MouseEvent<HTMLInputElement,  globalThis.MouseEvent>
 }
 
 export interface ITask { 
-  id: string; 
-  task: string;
-  completed: boolean;
+  id: string
+  task: string
+  completed: boolean
 }
 
 export const textCapitalize = (item: ITask) => {

@@ -1,16 +1,16 @@
 import { ITask, IEvent } from '../utils'
 import trashSVG from '../assets/trash-svg.svg'
-import { textCapitalize } from '../utils';
+import { textCapitalize } from '../utils'
 
 interface IProps {
-  taskList: ITask[];
+  taskList: ITask[]
   handleDelete: (
     event: IEvent,
     id: string
   ) => void
   handleCompeteTodo: (
     event: IEvent
-  , id: string) => void;
+  , id: string) => void
 }
 
 const TodoItem = ({

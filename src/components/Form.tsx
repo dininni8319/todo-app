@@ -1,11 +1,11 @@
-import { MouseEvent } from "react";
+import { MouseEvent } from "react"
 
 interface IProps {
   handleTask: (
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => void;
-  setTask: (value: string) => void;
-  task: string;
+  setTask: (value: string) => void
+  task: string
 }
 
 const Form = ({handleTask, setTask, task}: IProps) => {

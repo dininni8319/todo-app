@@ -1,8 +1,8 @@
 import { ITask, IEvent } from '../utils'
-import TodoItem from './TodoItem';
+import TodoItem from './TodoItem'
 
 interface IProps {
-  taskList: ITask[];
+  taskList: ITask[]
   handleDelete: (
     event: IEvent,
     id: string
@@ -23,7 +23,6 @@ const TodoList = ({
         taskList={taskList}
         handleDelete={handleDelete} 
         handleCompeteTodo={handleCompeteTodo}
-
       />
     </div>
   )
