@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { ITask } from '../App'
 import TodoItem from './TodoItem';
 
