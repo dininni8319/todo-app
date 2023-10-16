@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent, ChangeEvent } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 import {v4 as uuidv4} from 'uuid';
 import './App.css'
 import TodoList from './components/TodoList'
