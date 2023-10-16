@@ -9,7 +9,7 @@ interface Props {
     id: string
   ) => void;
   handleCompeteTodo: (
-    event: MouseEvent<HTMLInputElement, globalThis.MouseEvent>
+    event: MouseEvent<HTMLInputElement>
   , id: string) => void;
 }
 
@@ -17,16 +17,20 @@ const TodoItem = ({
   taskList ,
   handleDelete, 
   handleCompeteTodo,
-}:Props) =>{
+}:Props) => {
+
   const textCapitalize = (item: ITask) => {
     return `${item.task[0].toLocaleUpperCase()}${item.task.slice(1)}`
-}
+  }
 
   return (
     <>
       {taskList?.map((item: ITask) => {
         return (
-          <div className={`card mt-2 ${item.completed? "bg-success" : "bg-warning"}`} key={item.id}>
+          <div 
+            className={`card mt-2 ${item.completed? "bg-success" : "bg-warning"}`} 
+            key={item.id}
+          >
             <div className="card-body d-flex justify-content-between align-items-end">
               <div className="d-flex align-items-center">
                 <input 

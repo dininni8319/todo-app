@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 import { ITask } from '../App'
 import TodoItem from './TodoItem';
 
@@ -9,7 +9,7 @@ interface Props {
     id: string
   ) => void;
   handleCompeteTodo: (
-    event: MouseEvent<HTMLInputElement, globalThis.MouseEvent>
+    event: MouseEvent<HTMLInputElement>
   , id: string) => void;
 }
 

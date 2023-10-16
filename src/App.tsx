@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent } from 'react'
+import { useState, useEffect, MouseEvent, ChangeEvent } from 'react'
 import {v4 as uuidv4} from 'uuid';
 import './App.css'
 import TodoList from './components/TodoList'
@@ -52,7 +52,7 @@ const App = () => {
   }
 
   const handleCompeteTodo = (
-    event: MouseEvent<HTMLInputElement, globalThis.MouseEvent>
+    event: MouseEvent<HTMLInputElement>
     , id: string
   ) => {
     event.preventDefault()
@@ -69,8 +69,7 @@ const App = () => {
       setTaskList(findTaskAndComplete)
     }
   }
-
-  
+ 
   return (
     <div className='class-custom d-flex flex-column justify-content-center'>
       <div className='row'>
