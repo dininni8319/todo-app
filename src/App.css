@@ -2,9 +2,9 @@
  background: #5ECAFB;
 }
 
-button, input {
+/* button, input {
   outline: none;
-}
+} */
 
 .btn-custom {
   background-color: transparent;

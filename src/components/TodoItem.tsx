@@ -1,15 +1,15 @@
-import { ITask } from '../App'
+import { ITask, IEvent } from '../utils'
 import trashSVG from '../assets/trash-svg.svg'
-import { MouseEvent } from 'react';
+import { textCapitalize } from '../utils';
 
-interface Props {
+interface IProps {
   taskList: ITask[];
   handleDelete: (
-    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+    event: IEvent,
     id: string
-  ) => void;
+  ) => void
   handleCompeteTodo: (
-    event: MouseEvent<HTMLInputElement>
+    event: IEvent
   , id: string) => void;
 }
 
@@ -17,11 +17,7 @@ const TodoItem = ({
   taskList ,
   handleDelete, 
   handleCompeteTodo,
-}:Props) => {
-
-  const textCapitalize = (item: ITask) => {
-    return `${item.task[0].toLocaleUpperCase()}${item.task.slice(1)}`
-  }
+}:IProps) => {
 
   return (
     <>
@@ -38,11 +34,13 @@ const TodoItem = ({
                   name="completed"
                   id="completed" 
                   checked={item.completed}
+                  //@ts-ignore
                   onClick={(e) => handleCompeteTodo(e, item.id)}
                 />
                 <h5 className='ms-2 mb-0'>{textCapitalize(item)}</h5>
               </div>
               <button
+              //@ts-ignore
                 onClick={(e) => handleDelete(e, item.id)}
                 className='btn-custom'
               >

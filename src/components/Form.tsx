@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 
-interface IForm {
+interface IProps {
   handleTask: (
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => void;
@@ -8,7 +8,7 @@ interface IForm {
   task: string;
 }
 
-const Form = ({handleTask, setTask, task}: IForm) => {
+const Form = ({handleTask, setTask, task}: IProps) => {
   return (
     <form className="col-12 col-md-6 bg-light-blue d-flex justify-content-center p-2">
       <div className="form-group">

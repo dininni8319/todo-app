@@ -1,15 +1,14 @@
-import { MouseEvent } from 'react';
-import { ITask } from '../App'
+import { ITask, IEvent } from '../utils'
 import TodoItem from './TodoItem';
 
-interface Props {
+interface IProps {
   taskList: ITask[];
   handleDelete: (
-    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+    event: IEvent,
     id: string
   ) => void;
   handleCompeteTodo: (
-    event: MouseEvent<HTMLInputElement>
+    event: IEvent
   , id: string) => void;
 }
 
@@ -17,7 +16,7 @@ const TodoList = ({
   taskList, 
   handleDelete,
   handleCompeteTodo,
-}:Props) => {
+}:IProps) => {
   return (
     <div className='col-11 col-md-6 mt-5'>
       <TodoItem 

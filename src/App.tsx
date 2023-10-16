@@ -3,16 +3,8 @@ import {v4 as uuidv4} from 'uuid';
 import './App.css'
 import TodoList from './components/TodoList'
 import Form from './components/Form'
+import { filterTasks, ITask, IEvent } from './utils'
 
-export interface ITask { 
-  id: string; 
-  task: string;
-  completed: boolean;
-}
-
-function filterTasks(tasks: ITask[], id: string) {
-  return tasks.filter((item) => item.id !== id)
-}
 
 const App = () => {
   const [task, setTask] = useState<string>('');
@@ -41,8 +33,7 @@ const App = () => {
 
 
   const handleDelete = 
-    (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, id: string) => {
-      event.preventDefault()
+    (event: IEvent, id: string) => {
       const pars = localStorage.getItem('tasks') || String([])
       const tasks:ITask[] | [] = JSON.parse(pars)
 
@@ -52,23 +43,21 @@ const App = () => {
   }
 
   const handleCompeteTodo = (
-    event: MouseEvent<HTMLInputElement>
-    , id: string
+    event: IEvent,
+    id: string
   ) => {
-    event.preventDefault()
-    const pars = localStorage.getItem('tasks') || String([])
-    const tasks:ITask[] | [] = JSON.parse(pars)
-    const findTaskAndComplete = tasks.map(task => {
-      if (task.id === id ) {
-        task.completed = !task.completed
+    const storedTasks: ITask[]= JSON.parse(localStorage.getItem('tasks') || '[]');
+    
+    const updatedTasks = storedTasks.map((task: ITask) => {
+      if (task.id === id) {
+        task.completed = !task.completed;
       }
-      return task
-    })
-    if (findTaskAndComplete) {
-      localStorage.setItem('tasks', JSON.stringify(tasks))
-      setTaskList(findTaskAndComplete)
-    }
-  }
+      return task;
+    });
+    
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    setTaskList(updatedTasks);
+  };
  
   return (
     <div className='class-custom d-flex flex-column justify-content-center'>
