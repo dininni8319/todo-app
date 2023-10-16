@@ -35,12 +35,11 @@ const TodoItem = ({
                   id="completed" 
                   checked={item.completed}
                   //@ts-ignore
-                  onClick={(e) => handleCompeteTodo(e, item.id)}
+                  onClick={(event: IEvent) => handleCompeteTodo(event, item.id)}
                 />
                 <h5 className='ms-2 mb-0'>{textCapitalize(item)}</h5>
               </div>
               <button
-              //@ts-ignore
                 onClick={(e) => handleDelete(e, item.id)}
                 className='btn-custom'
               >

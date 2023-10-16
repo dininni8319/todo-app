@@ -1,8 +1,6 @@
 import { MouseEvent } from "react"
 
-export interface IEvent {
-  event: MouseEvent<HTMLInputElement,  globalThis.MouseEvent>
-}
+export interface IEvent extends MouseEvent<HTMLButtonElement,globalThis.MouseEvent> {}
 
 export interface ITask { 
   id: string

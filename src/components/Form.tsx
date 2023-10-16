@@ -1,8 +1,8 @@
-import { MouseEvent } from "react"
+import { IEvent } from "../utils";
 
 interface IProps {
   handleTask: (
-    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+    event: IEvent
   ) => void;
   setTask: (value: string) => void
   task: string
